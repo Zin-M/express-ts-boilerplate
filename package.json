@@ -1,0 +1,50 @@
+{
+  "name": "ferry-way",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts",
+    "start:ts": "ts-node src/swagger.ts"
+  },
+  "author": "zin-mg-mg",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.4.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^7.2.0",
+    "http-status": "^1.7.4",
+    "joi": "^17.13.3",
+    "joi-file-extensions": "^2.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "md5": "^2.3.0",
+    "moment": "^2.30.1",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.4",
+    "qs": "^6.13.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/swagger-ui-express": "^4.1.6",
+    "concurrently": "^8.2.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}
