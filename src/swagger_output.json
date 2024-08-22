@@ -1,0 +1,1174 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "v1.0.0",
+    "title": "Ferry Way API",
+    "description": "Implementation of Swagger with TypeScript"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": ""
+    },
+    {
+      "url": "http://54.179.29.200",
+      "description": "Staging"
+    }
+  ],
+  "paths": {
+    "/api/company/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/company/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/company/{companyId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/branch/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "company": {
+                    "type": "string",
+                    "example": "66c33e4b05f11cd52c0ac63a"
+                  },
+                  "start": {
+                    "type": "string",
+                    "format": "time",
+                    "example": "12:00:00"
+                  },
+                  "end": {
+                    "type": "string",
+                    "format": "time",
+                    "example": "14:00:00"
+                  }
+                },
+                "required": [
+                  "name",
+                  "company"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/branch/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/branch/{branchId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "branchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "branchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "company": {
+                    "type": "string",
+                    "example": "66c33e4b05f11cd52c0ac63a"
+                  },
+                  "start": {
+                    "type": "string",
+                    "format": "time",
+                    "example": "12:00:00"
+                  },
+                  "end": {
+                    "type": "string",
+                    "format": "time",
+                    "example": "14:00:00"
+                  }
+                },
+                "required": [
+                  "name",
+                  "company"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "branchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/employee/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "emp_no": {
+                    "type": "string",
+                    "example": "009"
+                  },
+                  "nrc": {
+                    "type": "string",
+                    "example": "10/MaYaNa(N) 22929"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "name",
+                  "emp_no",
+                  "nrc",
+                  "branch"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/employee/{employeeId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "emp_no": {
+                    "type": "string",
+                    "example": "009"
+                  },
+                  "nrc": {
+                    "type": "string",
+                    "example": "10/MaYaNa(N) 22929"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "name",
+                  "emp_no",
+                  "nrc",
+                  "branch"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/car/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "carNo": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "chassi": {
+                    "type": "string",
+                    "example": "ljasdlfk"
+                  },
+                  "color": {
+                    "type": "string",
+                    "example": "white"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "carNo",
+                  "chassi",
+                  "color",
+                  "branch"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/car/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/car/{carId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "carNo": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "chassi": {
+                    "type": "string",
+                    "example": "ljasdlfk"
+                  },
+                  "color": {
+                    "type": "string",
+                    "example": "white"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "carNo",
+                  "chassi",
+                  "color",
+                  "branch"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ferry-route/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "startPoint": {
+                    "type": "string",
+                    "example": "10.298989"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "9.029348"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Hlaing-North Dagon"
+                  }
+                },
+                "required": [
+                  "startPoint",
+                  "endPoint",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ferry-route/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ferry-route/{ferryRouteId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ferryRouteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ferryRouteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "startPoint": {
+                    "type": "string",
+                    "example": "10.298989"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "9.029348"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Hlaing-North Dagon"
+                  }
+                },
+                "required": [
+                  "startPoint",
+                  "endPoint",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ferryRouteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/location/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lattitude": {
+                    "type": "string",
+                    "example": "10.298989"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "example": "9.029348"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "employee": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "driver": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "ferryRoute": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "lattitude",
+                  "longitude",
+                  "branch",
+                  "employee",
+                  "driver",
+                  "ferryRoute"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/location/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/location/{locationId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lattitude": {
+                    "type": "string",
+                    "example": "10.298989"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "example": "9.029348"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "employee": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "driver": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "ferryRoute": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  }
+                },
+                "required": [
+                  "lattitude",
+                  "longitude",
+                  "branch",
+                  "employee",
+                  "driver",
+                  "ferryRoute"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/driver/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "66c631bbb2f88fec7b3d782a"
+                  }
+                },
+                "required": [
+                  "name",
+                  "branch",
+                  "car"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/driver/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/driver/{driverId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Some example..."
+                  },
+                  "branch": {
+                    "type": "string",
+                    "example": "66c4bfa573d93a8934beddfb"
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "66c631bbb2f88fec7b3d782a"
+                  }
+                },
+                "required": [
+                  "name",
+                  "branch",
+                  "car"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
