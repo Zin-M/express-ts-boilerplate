@@ -31,11 +31,11 @@ router.post(
                     schema: {
                         type: 'object',
                         properties: {
-                            startPoint: { type: 'string', example: '10.298989' },
-                            endPoint: { type: 'string', example: '9.029348' },
+                            start_point: { type: 'string', example: '10.298989' },
+                            end_point: { type: 'string', example: '9.029348' },
                             name: { type: 'string', example: 'Hlaing-North Dagon' },
                         },
-                        required: ['startPoint','endPoint', 'name']
+                        required: ['start_point','end_point', 'name']
                     }
                 }
             }
@@ -53,11 +53,11 @@ router.patch(
                     schema: {
                         type: 'object',
                         properties: {
-                            startPoint: { type: 'string', example: '10.298989' },
-                            endPoint: { type: 'string', example: '9.029348' },
+                            start_point: { type: 'string', example: '10.298989' },
+                            end_point: { type: 'string', example: '9.029348' },
                             name: { type: 'string', example: 'Hlaing-North Dagon' },
                         },
-                        required: ['startPoint','endPoint', 'name']
+                        required: ['start_point','end_point', 'name']
                     }
                 }
             }

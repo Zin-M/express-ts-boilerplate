@@ -14,8 +14,7 @@ const handleValidationErrors = async (
 }
 
 export const validateCarRequest = [
-    body("carNo").isString().notEmpty().withMessage("Car No must be a string"),
-    body("chassi").isString().notEmpty().withMessage("Chassi must be a string"),
+    body("car_no").isString().notEmpty().withMessage("Car No must be a string"),
     body("color").isString().notEmpty().withMessage("Color must be a string"),
     body("branch")
     .isMongoId()

@@ -31,12 +31,11 @@ router.post(
                     schema: {
                         type: 'object',
                         properties: {
-                            carNo: { type: 'string', example: 'Some example...' },
-                            chassi: { type: 'string', example: 'ljasdlfk' },
+                            car_no: { type: 'string', example: 'Some example...' },
                             color: { type: 'string', example: 'white' },
                             branch: { type: 'string', example: '66c4bfa573d93a8934beddfb' }
                         },
-                        required: ['carNo','chassi', 'color', 'branch']
+                        required: ['car_no', 'color', 'branch']
                     }
                 }
             }
@@ -54,12 +53,11 @@ router.patch(
                     schema: {
                         type: 'object',
                         properties: {
-                            carNo: { type: 'string', example: 'Some example...' },
-                            chassi: { type: 'string', example: 'ljasdlfk' },
+                            car_no: { type: 'string', example: 'Some example...' },
                             color: { type: 'string', example: 'white' },
                             branch: { type: 'string', example: '66c4bfa573d93a8934beddfb' }
                         },
-                        required: ['carNo','chassi', 'color', 'branch']
+                        required: ['car_no', 'color', 'branch']
                     }
                 }
             }
