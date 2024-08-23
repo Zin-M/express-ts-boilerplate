@@ -12,7 +12,7 @@ interface ILocation extends Document, TLocation {}
 
 const locationSchema = new Schema<ILocation>(
     {
-        lattitude: {
+        latitude: {
             type: String,
             require: true
         },

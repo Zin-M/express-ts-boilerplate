@@ -7,11 +7,11 @@ interface IFerryRoute extends Document, TFerryRoute {}
 
 const ferryRouteSchema = new Schema<IFerryRoute>(
     {
-        startPoint: {
+        start_point: {
             type: String,
             require: true
         },
-        endPoint: {
+        end_point: {
             type: String,
             require: true
         },

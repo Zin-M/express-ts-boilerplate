@@ -8,11 +8,7 @@ interface ICar extends Document, TCar {}
 
 const carSchema = new Schema<ICar>(
     {
-        carNo: {
-            type: String,
-            require: true
-        },
-        chassi: {
+        car_no: {
             type: String,
             require: true
         },

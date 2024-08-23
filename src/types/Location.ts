@@ -1,7 +1,7 @@
 import { Document, Types } from "mongoose";
 
 export interface TLocation extends Document {
-    lattitude: string;
+    latitude: string;
     longitude: string;
     nrc: string;
     branch: Types.ObjectId;

@@ -529,13 +529,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "carNo": {
+                  "car_no": {
                     "type": "string",
                     "example": "Some example..."
-                  },
-                  "chassi": {
-                    "type": "string",
-                    "example": "ljasdlfk"
                   },
                   "color": {
                     "type": "string",
@@ -547,8 +543,7 @@
                   }
                 },
                 "required": [
-                  "carNo",
-                  "chassi",
+                  "car_no",
                   "color",
                   "branch"
                 ]
@@ -611,13 +606,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "carNo": {
+                  "car_no": {
                     "type": "string",
                     "example": "Some example..."
-                  },
-                  "chassi": {
-                    "type": "string",
-                    "example": "ljasdlfk"
                   },
                   "color": {
                     "type": "string",
@@ -629,8 +620,7 @@
                   }
                 },
                 "required": [
-                  "carNo",
-                  "chassi",
+                  "car_no",
                   "color",
                   "branch"
                 ]
@@ -697,11 +687,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "startPoint": {
+                  "start_point": {
                     "type": "string",
                     "example": "10.298989"
                   },
-                  "endPoint": {
+                  "end_point": {
                     "type": "string",
                     "example": "9.029348"
                   },
@@ -711,8 +701,8 @@
                   }
                 },
                 "required": [
-                  "startPoint",
-                  "endPoint",
+                  "start_point",
+                  "end_point",
                   "name"
                 ]
               }
@@ -774,11 +764,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "startPoint": {
+                  "start_point": {
                     "type": "string",
                     "example": "10.298989"
                   },
-                  "endPoint": {
+                  "end_point": {
                     "type": "string",
                     "example": "9.029348"
                   },
@@ -788,8 +778,8 @@
                   }
                 },
                 "required": [
-                  "startPoint",
-                  "endPoint",
+                  "start_point",
+                  "end_point",
                   "name"
                 ]
               }
