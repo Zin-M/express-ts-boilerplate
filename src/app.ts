@@ -11,6 +11,8 @@ import swaggerUi from "swagger-ui-express";
 import swaggerOutput from "./swagger_output.json";
 import { Server as SocketIOServer } from "socket.io";
 import { createServer, Server as HTTPServer } from "http";
+import setupSocketIO from "./socket.io"; // Import the Socket.IO setup function
+
 
 class App {
   private app: Express;
@@ -20,17 +22,10 @@ class App {
   constructor() {
     this.app = express();
     this.server = createServer(this.app);
-    this.io = new SocketIOServer(this.server, {
-      cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-      },
-    });
-
+    this.io = setupSocketIO(this.server);
     this.setup();
     this.setupRoutes();
     this.connectDatabase();
-    this.setupSocketIO();
   }
 
   private setup() {
@@ -85,20 +80,6 @@ class App {
     });
   }
 
-  private setupSocketIO() {
-    this.io.on("connection", (socket) => {
-      console.log(`New client connected: ${socket.id}`);
-
-      socket.on("disconnect", () => {
-        console.log(`Client disconnected: ${socket.id}`);
-      });
-
-      socket.on("ferry-location-update", (data) => {
-        console.log("Ferry location update:", data);
-        this.io.emit("ferry-location-update", data);
-      });
-    });
-  }
 
   private setupRoutes() {
     new Routes(this.app);
