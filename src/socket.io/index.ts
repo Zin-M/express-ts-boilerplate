@@ -6,25 +6,24 @@ export default function setupSocketIO(server: HTTPServer): SocketIOServer {
         cors: {
             origin: `*`,
             methods: ["GET", "POST"],
+            allowedHeaders: ["my-custom-header"],
+
         },
     });
+
 
     io.on("connection", (socket) => {
         console.log(`New client connected: ${socket.id}`);
 
-        socket.on("driver-current-location", (locationData:any) => {
+        // Listen for the driver's current location
+        socket.on("driver-current-location", (locationData: { latitude: number; longitude: number }) => {
             console.log("Received client location:", locationData);
-            // You can process or save the location data here
+            io.emit("ferry-location-update", locationData);
         });
 
-
+        // Handle client disconnect
         socket.on("disconnect", () => {
             console.log(`Client disconnected: ${socket.id}`);
-        });
-
-        socket.on("ferry-location-update", (data) => {
-            console.log("Ferry location update:", data);
-            io.emit("ferry-location-update", data);
         });
     });
 
