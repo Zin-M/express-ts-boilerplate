@@ -845,7 +845,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "lattitude": {
+                  "latitude": {
                     "type": "string",
                     "example": "10.298989"
                   },
@@ -853,30 +853,15 @@
                     "type": "string",
                     "example": "9.029348"
                   },
-                  "branch": {
+                  "name": {
                     "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "employee": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "driver": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "ferryRoute": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
+                    "example": "Hlaing"
                   }
                 },
                 "required": [
-                  "lattitude",
+                  "latitude",
                   "longitude",
-                  "branch",
-                  "employee",
-                  "driver",
-                  "ferryRoute"
+                  "name"
                 ]
               }
             }
@@ -937,7 +922,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "lattitude": {
+                  "latitude": {
                     "type": "string",
                     "example": "10.298989"
                   },
@@ -945,30 +930,15 @@
                     "type": "string",
                     "example": "9.029348"
                   },
-                  "branch": {
+                  "name": {
                     "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "employee": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "driver": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
-                  },
-                  "ferryRoute": {
-                    "type": "string",
-                    "example": "66c4bfa573d93a8934beddfb"
+                    "example": "Hlaing"
                   }
                 },
                 "required": [
-                  "lattitude",
+                  "latitude",
                   "longitude",
-                  "branch",
-                  "employee",
-                  "driver",
-                  "ferryRoute"
+                  "name"
                 ]
               }
             }

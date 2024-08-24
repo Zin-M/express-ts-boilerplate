@@ -12,17 +12,12 @@ export default function setupSocketIO(server: HTTPServer): SocketIOServer {
         },
     });
 
-
     io.on("connection", (socket) => {
         console.log(`New client connected: ${socket.id}`);
-
-        // Listen for the driver's current location
         socket.on("driver-current-location", (locationData: { latitude: number; longitude: number }) => {
             console.log("Received client location:", locationData);
             io.emit("ferry-location-update", locationData);
         });
-
-        // Handle client disconnect
         socket.on("disconnect", () => {
             console.log(`Client disconnected: ${socket.id}`);
         });

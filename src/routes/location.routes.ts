@@ -31,14 +31,12 @@ router.post(
                     schema: {
                         type: 'object',
                         properties: {
-                            lattitude: { type: 'string', example: '10.298989' },
+                            latitude: { type: 'string', example: '10.298989' },
                             longitude: { type: 'string', example: '9.029348' },
-                            branch: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            employee: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            driver: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            ferryRoute: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
+                            name: { type: 'string', example: "Hlaing" },
+
                         },
-                        required: ['lattitude','longitude', 'branch', 'employee', 'driver', 'ferryRoute']
+                        required: ['latitude','longitude', 'name']
                     }
                 }
             }
@@ -49,25 +47,23 @@ router.post(
 
 router.patch(
   "/:locationId",
-  /*  #swagger.requestBody = {
-            required: true,
-            content: {
-                'application/json': {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            lattitude: { type: 'string', example: '10.298989' },
-                            longitude: { type: 'string', example: '9.029348' },
-                            branch: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            employee: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            driver: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                            ferryRoute: { type: 'string', example: '66c4bfa573d93a8934beddfb'},
-                        },
-                        required: ['lattitude','longitude', 'branch', 'employee', 'driver', 'ferryRoute']
-                    }
-                }
-            }
-    } */
+    /*  #swagger.requestBody = {
+              required: true,
+              content: {
+                  'application/json': {
+                      schema: {
+                          type: 'object',
+                          properties: {
+                              latitude: { type: 'string', example: '10.298989' },
+                              longitude: { type: 'string', example: '9.029348' },
+                              name: { type: 'string', example: "Hlaing" },
+
+                          },
+                          required: ['latitude','longitude', 'name']
+                      }
+                  }
+              }
+      } */
   validateLocationId,
   validateLocationRequest,
   LocationController.updateLocationHandler
