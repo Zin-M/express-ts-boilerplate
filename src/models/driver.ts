@@ -41,4 +41,4 @@ driverSchema.pre("findOne", function() {
     this.where({status: "active"});
 });
 
-export default mongoose.model<IDriver>("Location", driverSchema);
+export default mongoose.model<IDriver>("Driver", driverSchema);
