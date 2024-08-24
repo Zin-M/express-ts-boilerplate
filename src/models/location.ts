@@ -58,4 +58,4 @@ locationSchema.pre("findOne", function() {
 });
 
 
-export default mongoose.models.Location || mongoose.model<ILocation>("Location", locationSchema);
+export default mongoose.model<ILocation>("Location", locationSchema);
