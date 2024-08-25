@@ -689,11 +689,11 @@
                 "properties": {
                   "start_point": {
                     "type": "string",
-                    "example": "10.298989"
+                    "example": "66ca15d71fd5e2786eabded3"
                   },
                   "end_point": {
                     "type": "string",
-                    "example": "9.029348"
+                    "example": "66ca15d71fd5e2786eabded3"
                   },
                   "name": {
                     "type": "string",
@@ -766,11 +766,11 @@
                 "properties": {
                   "start_point": {
                     "type": "string",
-                    "example": "10.298989"
+                    "example": "66ca15d71fd5e2786eabded3"
                   },
                   "end_point": {
                     "type": "string",
-                    "example": "9.029348"
+                    "example": "66ca15d71fd5e2786eabded3"
                   },
                   "name": {
                     "type": "string",
@@ -856,12 +856,17 @@
                   "name": {
                     "type": "string",
                     "example": "Hlaing"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Near MICT Park"
                   }
                 },
                 "required": [
                   "latitude",
                   "longitude",
-                  "name"
+                  "name",
+                  "address"
                 ]
               }
             }
@@ -933,12 +938,17 @@
                   "name": {
                     "type": "string",
                     "example": "Hlaing"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Near MICT Park"
                   }
                 },
                 "required": [
                   "latitude",
                   "longitude",
-                  "name"
+                  "name",
+                  "address"
                 ]
               }
             }

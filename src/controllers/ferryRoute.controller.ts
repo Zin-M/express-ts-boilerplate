@@ -9,10 +9,22 @@ import {
   updateFerryRouteById,
 } from "../services/ferryRoute.service";
 
+import { createRouteLocation } from "../services/routeLocation.service";
+
 const createFerryRouteHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const data = req.body;
     const newFerryRoute = await createFerryRoute(data);
+    if(data.location_ids && data.location_ids.length > 0) {
+      data.location_ids.forEach( (location_id: string, index: number) => {
+        const routeLocationData = {
+            route_id : newFerryRoute.data.id,
+            location_id: location_id,
+            sr_no: index + 1
+        };
+        const newRouteLocation =  createRouteLocation(routeLocationData);
+      });
+    }
     res.status(201).json(newFerryRoute);
   }
 );

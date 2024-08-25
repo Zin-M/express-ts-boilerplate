@@ -34,9 +34,10 @@ router.post(
                             latitude: { type: 'string', example: '10.298989' },
                             longitude: { type: 'string', example: '9.029348' },
                             name: { type: 'string', example: "Hlaing" },
+                            address: { type: 'string', example: "Near MICT Park" },
 
                         },
-                        required: ['latitude','longitude', 'name']
+                        required: ['latitude','longitude', 'name', 'address']
                     }
                 }
             }
@@ -57,9 +58,10 @@ router.patch(
                               latitude: { type: 'string', example: '10.298989' },
                               longitude: { type: 'string', example: '9.029348' },
                               name: { type: 'string', example: "Hlaing" },
+                              address: { type: 'string', example: "Near MICT Park" },
 
                           },
-                          required: ['latitude','longitude', 'name']
+                          required: ['latitude','longitude', 'name', 'address']
                       }
                   }
               }
