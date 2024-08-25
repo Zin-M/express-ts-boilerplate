@@ -53,7 +53,7 @@ class BaseService<T extends Document> {
       query = query.populate(populateFields);
     }
     const items = await query;
-    if (items.length > 0) {
+    if (items) {
       return { status: 200, data: items };
     }
     throw new Error(`No ${this.model.modelName.toLowerCase()}s found`);
