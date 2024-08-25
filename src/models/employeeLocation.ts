@@ -1,26 +1,22 @@
 import mongoose from "mongoose";
 import { statusEnum } from "../helpers/enums";
-import { TFerryRoute } from "../types/FerryRoute";
+import { TEmployeeLocation } from "../types/EmployeeLocation";
 import Location from "./location";
 
 const { Schema } = mongoose;
 
-interface IFerryRoute extends Document, TFerryRoute {}
+interface IEmployeeLocation extends Document, TEmployeeLocation {}
 
-const ferryRouteSchema = new Schema<IFerryRoute>(
+const employeeLocationSchema = new Schema<IEmployeeLocation>(
     {
-        start_point: {
+        employee_id: {
             type: Schema.Types.ObjectId,
             ref: Location,
             require: true
         },
-        end_point: {
+        location_id: {
             type: Schema.Types.ObjectId,
             ref: Location,
-            require: true
-        },
-        name: {
-            type: String,
             require: true
         },
         status: {
@@ -32,12 +28,12 @@ const ferryRouteSchema = new Schema<IFerryRoute>(
     { timestamps: true }
 );
 
-ferryRouteSchema.pre("find", function() {
+employeeLocationSchema.pre("find", function() {
     this.where({status: "active"});
 });
 
-ferryRouteSchema.pre("findOne", function() {
+employeeLocationSchema.pre("findOne", function() {
     this.where({status: "active"});
 });
 
-export default mongoose.model<IFerryRoute>("FerryRoute", ferryRouteSchema);
+export default mongoose.model<IEmployeeLocation>("EmployeeLocation", employeeLocationSchema);
