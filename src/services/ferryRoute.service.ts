@@ -34,13 +34,13 @@ export const getAllFerryRoute = async () => {
       ferryRoutes.map(async (route) => {
         const routeLocations = await RouteLocation.find({ route_id: route._id })
           .lean();
-        return { 
-            status: 200,
-            data: { ...route, route_locations: routeLocations }
-         };
+        return { ...route, route_locations: routeLocations  };
       })
     );
-    return ferryRoutesWithLocations;
+    return {
+      status: 200,
+      data: ferryRoutesWithLocations
+    };
   } catch (error) {
     throw new Error('Failed to fetch ferry routes');
   }
