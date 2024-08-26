@@ -12,7 +12,7 @@ const doc = {
       description: "",
     },
     {
-      url: "http://54.179.29.200",
+      url: "http://122.248.213.148",
       description: "Staging",
     },
   ],
