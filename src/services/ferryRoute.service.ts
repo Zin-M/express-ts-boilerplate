@@ -10,12 +10,12 @@ export const getFerryRouteById = async (id: string) => {
     if (!ferryRoute) {
       throw new Error('Ferry Route not found');
     }
-    const routeLocations = await RouteLocation.find({ route_id: id })
-      .select('location_id') 
+    const routeLocations = await RouteLocation.find({ route: id })
+      .select('stop_location') 
       .lean();
     return { 
         status: 200,
-        data: {...ferryRoute, location_ids: routeLocations.map(location => location.location_id)}
+        data: {...ferryRoute, location_ids: routeLocations.map(location => location.stop_location)}
      };
   } catch (error) {
     console.error(error);

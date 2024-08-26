@@ -9,12 +9,12 @@ interface IEmployeeLocation extends Document, TEmployeeLocation {}
 
 const employeeLocationSchema = new Schema<IEmployeeLocation>(
     {
-        employee_id: {
+        employee: {
             type: Schema.Types.ObjectId,
             ref: Location,
             require: true
         },
-        location_id: {
+        stop_location: {
             type: Schema.Types.ObjectId,
             ref: Location,
             require: true

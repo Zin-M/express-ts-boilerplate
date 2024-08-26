@@ -19,8 +19,8 @@ const createFerryRouteHandler = asyncHandler(
     if(data.location_ids && data.location_ids.length > 0) {
       data.location_ids.forEach( (location_id: string, index: number) => {
         const routeLocationData = {
-            route_id : newFerryRoute.data.id,
-            location_id: location_id,
+            route : newFerryRoute.data.id,
+            stop_location: location_id,
             sr_no: index + 1
         };
         const newRouteLocation =  createRouteLocation(routeLocationData);
@@ -63,8 +63,8 @@ const updateFerryRouteHandler = asyncHandler(
     if(updateData.location_ids && updateData.location_ids.length > 0) {
         updateData.location_ids.forEach( (location_id: string, index: number) => {
           const routeLocationData = {
-              route_id : ferryRouteId,
-              location_id: location_id,
+              route : ferryRouteId,
+              stop_location: location_id,
               sr_no: index + 1
           };
           const newRouteLocation =  createRouteLocation(routeLocationData);

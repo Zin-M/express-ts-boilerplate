@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { statusEnum } from "../helpers/enums";
 import { TRouteLocation } from "../types/RouteLocation";
 import Location from "./location";
-import FerryRoute from "./ferryRoute";
+import Route from "./ferryRoute";
 
 const { Schema } = mongoose;
 
@@ -10,12 +10,12 @@ interface IRouteLocation extends Document, TRouteLocation {}
 
 const routeLocationSchema = new Schema<IRouteLocation>(
     {
-        route_id: {
+        route: {
             type: Schema.Types.ObjectId,
-            ref: FerryRoute,
+            ref: Route,
             require: true
         },
-        location_id: {
+        stop_location: {
             type: Schema.Types.ObjectId,
             ref: Location,
             require: true

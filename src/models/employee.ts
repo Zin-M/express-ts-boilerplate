@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Branch from "./branch";
+import FerryRoute from "./ferryRoute";
 import { statusEnum } from "../helpers/enums";
 import { TEmployee } from "../types/Employee";
 const { Schema } = mongoose;
@@ -24,6 +25,10 @@ const employeeSchema = new Schema<IEmployee>(
             type: Schema.Types.ObjectId,
             ref: Branch,
             require: true
+        },
+        route: {
+            type: Schema.Types.ObjectId,
+            ref: FerryRoute
         },
         status: {
             type: String,

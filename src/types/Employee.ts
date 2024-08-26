@@ -5,6 +5,7 @@ export interface TEmployee extends Document {
     emp_no: string;
     nrc: string;
     branch: Types.ObjectId;
+    route: Types.ObjectId;
     status: string;
     createdAt: Date;
     updateAt: Date;

@@ -1,10 +1,25 @@
 import Employee from "../models/employee";
+import FerryRoute from "../models/ferryRoute";
+import RouteLocation from "../models/routeLocation";
 import BaseService from "./base.service";
 
 const employeeService = new BaseService(Employee);
 
 export const getEmployeeById = async(id:string) => {
-    return await employeeService.getById(id, "branch");
+
+    let query = Employee.findById(id).populate("branch").populate("route");
+
+    const item = await query;
+    
+    if (!item) {
+      throw new Error(`${Employee.modelName} not found`);
+    }
+
+    const routeLocations = await RouteLocation.find({ route: item.route }).populate("stop_location")
+      .lean();
+
+    return { status: 200, data: {item, locations: routeLocations} };
+
 }
 
 export const getEmployees = async (limit: number, page: number) => {
