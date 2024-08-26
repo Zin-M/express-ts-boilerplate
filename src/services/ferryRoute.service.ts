@@ -13,7 +13,10 @@ export const getFerryRouteById = async (id: string) => {
     const routeLocations = await RouteLocation.find({ route_id: id })
       .select('location_id') 
       .lean();
-    return { ...ferryRoute, route_locations: routeLocations.map(location => location.location_id) };
+    return { 
+        status: 200,
+        data: {...ferryRoute, location_ids: routeLocations.map(location => location.location_id)}
+     };
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch ferry route');
@@ -26,15 +29,17 @@ export const getFerryRoutes = async (limit: number, page: number) => {
 
 export const getAllFerryRoute = async () => {
   try {
-    const ferryRoutes = await FerryRoute.find().lean();
+    const ferryRoutes = await FerryRoute.find().populate('start_point').populate('end_point').lean();
     const ferryRoutesWithLocations = await Promise.all(
       ferryRoutes.map(async (route) => {
         const routeLocations = await RouteLocation.find({ route_id: route._id })
           .lean();
-        return { ...route, route_locations: routeLocations };
+        return { 
+            status: 200,
+            data: { ...route, route_locations: routeLocations }
+         };
       })
     );
-
     return ferryRoutesWithLocations;
   } catch (error) {
     throw new Error('Failed to fetch ferry routes');
