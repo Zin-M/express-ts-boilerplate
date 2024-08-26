@@ -15,6 +15,10 @@ const doc = {
       url: "http://122.248.213.148",
       description: "Staging",
     },
+    {
+      url: "http://122.248.213.148",
+      description: "Development",
+    },
   ],
   components: {
     securitySchemes: {
