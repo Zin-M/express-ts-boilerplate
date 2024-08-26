@@ -10,6 +10,7 @@ import {
 } from "../services/ferryRoute.service";
 
 import { createRouteLocation } from "../services/routeLocation.service";
+import RouteLocation from "../models/routeLocation";
 
 const createFerryRouteHandler = asyncHandler(
   async (req: Request, res: Response) => {
@@ -56,6 +57,20 @@ const updateFerryRouteHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const { ferryRouteId } = req.params;
     const updateData = req.body;
+
+    const deleteRouteLocation = await RouteLocation.deleteMany({ route_id: ferryRouteId });
+
+    if(updateData.location_ids && updateData.location_ids.length > 0) {
+        updateData.location_ids.forEach( (location_id: string, index: number) => {
+          const routeLocationData = {
+              route_id : ferryRouteId,
+              location_id: location_id,
+              sr_no: index + 1
+          };
+          const newRouteLocation =  createRouteLocation(routeLocationData);
+        });
+    }
+
     const updatedFerryRoute = await updateFerryRouteById(ferryRouteId, updateData);
     res.json(updatedFerryRoute);
   }
