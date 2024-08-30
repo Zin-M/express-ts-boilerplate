@@ -3,6 +3,7 @@ import Branch from "./branch";
 import FerryRoute from "./ferryRoute";
 import { statusEnum } from "../helpers/enums";
 import { TEmployee } from "../types/Employee";
+import Location from "./location";
 const { Schema } = mongoose;
 
 interface IEmployee extends Document, TEmployee {}
@@ -29,6 +30,10 @@ const employeeSchema = new Schema<IEmployee>(
         route: {
             type: Schema.Types.ObjectId,
             ref: FerryRoute
+        },
+        ferry_destination: {
+            type: Schema.Types.ObjectId,
+            ref: Location
         },
         status: {
             type: String,

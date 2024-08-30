@@ -1,0 +1,71 @@
+{
+    "status": 200,
+    "data": {
+      "_id": "66d1d37b8760c2705b902f1f",
+      "name": "APP",
+      "emp_no": "009",
+      "branch": {
+        "_id": "66d1d03c4d90c7443dd68cfc",
+        "name": "Main",
+        "company": {
+          "_id": "66d1cff24d90c7443dd68cf8",
+          "name": "BIT"
+        }
+      },
+      "route": {
+        "_id": "66d1d0dd4d90c7443dd68d03",
+        "name": "Hlaing-North Dagon"
+      },
+      "ferry_destination": {
+        "_id": "66d1d06e4d90c7443dd68d00",
+        "name": "Hlaing",
+        "address": "Near MICT Park"
+      },
+      "locations": [
+        {
+          "_id": "66d1d0dd4d90c7443dd68d05",
+          "stop_location": {
+            "_id": "66d1d06e4d90c7443dd68d00",
+            "latitude": "10.298989",
+            "longitude": "9.029348",
+            "name": "Hlaing",
+            "address": "Near MICT Park"
+          }
+        },
+        {
+          "_id": "66d1d0dd4d90c7443dd68d05",
+          "stop_location": {
+            "_id": "66d1d06e4d90c7443dd68d00",
+            "latitude": "10.298989",
+            "longitude": "9.029348",
+            "name": "Hlaing",
+            "address": "Near MICT Park"
+          }
+        }
+      ]
+    }
+  }
+
+
+  "locations": [
+        {
+          "_id": "66d1d0dd4d90c7443dd68d05",
+          "stop_location": {
+            "_id": "66d1d06e4d90c7443dd68d00",
+            "latitude": "10.298989",
+            "longitude": "9.029348",
+            "name": "Hlaing",
+            "address": "Near MICT Park"
+          }
+        },
+        {
+          "_id": "66d1d0dd4d90c7443dd68d05",
+          "stop_location": {
+            "_id": "66d1d06e4d90c7443dd68d00",
+            "latitude": "10.298989",
+            "longitude": "9.029348",
+            "name": "Hlaing",
+            "address": "Near MICT Park"
+          }
+        }
+      ]

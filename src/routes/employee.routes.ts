@@ -34,8 +34,10 @@ router.post(
                             emp_no: {type: 'string', example: '009'},
                             nrc: {type: 'string', example: '10/MaYaNa(N) 22929'},
                             branch: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
+                            route: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
+                            ferry_destination: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
                         },
-                        required: ['name', 'emp_no', 'nrc', 'branch']
+                        required: ['name', 'emp_no', 'nrc', 'branch', 'route', 'ferry_destination']
                     }
                 }
             }
@@ -57,8 +59,10 @@ router.patch(
                             emp_no: {type: 'string', example: '009'},
                             nrc: {type: 'string', example: '10/MaYaNa(N) 22929'},
                             branch: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
+                            route: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
+                            ferry_destination: { type: 'string', example: '66c4bfa573d93a8934beddfb' },
                         },
-                        required: ['name', 'emp_no', 'nrc', 'branch']
+                        required: ['name', 'emp_no', 'nrc', 'branch', 'route', 'ferry_destination']
                     }
                 }
             }
