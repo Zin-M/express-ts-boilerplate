@@ -12,11 +12,11 @@ const doc = {
       description: "",
     },
     {
-      url: "http://122.248.213.148",
+      url: "http://stop_location.248.213.148",
       description: "Staging",
     },
     {
-      url: "http://13.229.240.4",
+      url: "13.229.240.4",
       description: "Development",
     },
   ],

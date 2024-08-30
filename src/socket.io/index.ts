@@ -5,7 +5,7 @@ export default function setupSocketIO(server: HTTPServer): SocketIOServer {
     const io = new SocketIOServer(server, {
         cors: {
             // origin: `*`,
-            origin: "http://122.248.213.148",
+            origin: "http://13.229.240.4",
             methods: ["GET", "POST"],
             allowedHeaders: ["my-custom-header"],
 
