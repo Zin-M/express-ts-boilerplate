@@ -58,7 +58,7 @@ const updateFerryRouteHandler = asyncHandler(
     const { ferryRouteId } = req.params;
     const updateData = req.body;
 
-    const deleteRouteLocation = await RouteLocation.deleteMany({ route_id: ferryRouteId });
+    const deleteRouteLocation = await RouteLocation.deleteMany({ route: ferryRouteId });
 
     if(updateData.location_ids && updateData.location_ids.length > 0) {
         updateData.location_ids.forEach( (location_id: string, index: number) => {
