@@ -60,16 +60,17 @@ const updateFerryRouteHandler = asyncHandler(
 
     const deleteRouteLocation = await RouteLocation.deleteMany({ route: ferryRouteId });
 
-    if(updateData.location_ids && updateData.location_ids.length > 0) {
-        updateData.location_ids.forEach( (location_id: string, index: number) => {
+    if (updateData.location_ids && updateData.location_ids.length > 0) {
+      for (let index = 0; index < updateData.location_ids.length; index++) {
+          const location_id = updateData.location_ids[index];
           const routeLocationData = {
-              route : ferryRouteId,
+              route: ferryRouteId,
               stop_location: location_id,
-              sr_no: index + 1
+              sr_no: index + 1 
           };
-          const newRouteLocation =  createRouteLocation(routeLocationData);
-        });
-    }
+          await createRouteLocation(routeLocationData);
+      }
+  }
 
     const updatedFerryRoute = await updateFerryRouteById(ferryRouteId, updateData);
     res.json(updatedFerryRoute);

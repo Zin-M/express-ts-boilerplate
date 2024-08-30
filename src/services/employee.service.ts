@@ -31,8 +31,13 @@ export const getEmployeeById = async(id:string) => {
     }
 
     let location_ids = (await RouteLocation.find({ route: employee.route }).sort({ sr_no: 1 })).map(doc => doc.stop_location);
-    let locations = await Location.find({_id: {$in: location_ids}}).select('name address latitude longitude').lean();
 
+    let locations: Array<any> = [];;
+    for (let index = 0; index < location_ids.length; index++) {
+        let location = await Location.findById(location_ids[index]).select('name address latitude longitude').lean();
+        locations.push(location);
+    }
+    
     return { 
         status: 200,
         data: {...employee, locations: locations}
