@@ -6,16 +6,22 @@ const ferryRouteService = new BaseService(FerryRoute);
 
 export const getFerryRouteById = async (id: string) => {
   try {
-    const ferryRoute = await FerryRoute.findById(id).populate('start_point').populate('end_point').lean();
+    const ferryRoute = await FerryRoute.findById(id).lean();
     if (!ferryRoute) {
       throw new Error('Ferry Route not found');
     }
-    const routeLocations = await RouteLocation.find({ route: id }).populate('stop_location').sort({ sr_no: 1 }).lean();
+    let routeLocationIds = await RouteLocation.find({ route: id })
+      .select('stop_location') 
+      .lean();
+
+      let routeLocations = await RouteLocation.find({ route: id }).populate('stop_location').sort({ sr_no: 1})
+      .lean();
     return { 
         status: 200,
-        data: {...ferryRoute, locations: routeLocations}
+        data: {...ferryRoute, location_ids: routeLocationIds.map(location => location.stop_location), locations: routeLocations}
      };
   } catch (error) {
+    console.error(error);
     throw new Error('Failed to fetch ferry route');
   }
 };
