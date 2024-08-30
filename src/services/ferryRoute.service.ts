@@ -6,19 +6,16 @@ const ferryRouteService = new BaseService(FerryRoute);
 
 export const getFerryRouteById = async (id: string) => {
   try {
-    const ferryRoute = await FerryRoute.findById(id).lean();
+    const ferryRoute = await FerryRoute.findById(id).populate('start_point').populate('end_point').lean();
     if (!ferryRoute) {
       throw new Error('Ferry Route not found');
     }
-    const routeLocations = await RouteLocation.find({ route: id })
-      .select('stop_location') 
-      .lean();
+    const routeLocations = await RouteLocation.find({ route: id }).populate('stop_location').sort({ sr_no: 1 }).lean();
     return { 
         status: 200,
-        data: {...ferryRoute, location_ids: routeLocations.map(location => location.stop_location)}
+        data: {...ferryRoute, locations: routeLocations}
      };
   } catch (error) {
-    console.error(error);
     throw new Error('Failed to fetch ferry route');
   }
 };
@@ -31,10 +28,9 @@ export const getAllFerryRoute = async () => {
   try {
     const ferryRoutes = await FerryRoute.find().populate('start_point').populate('end_point').lean();
     const ferryRoutesWithLocations = await Promise.all(
-      ferryRoutes.map(async (route) => {
-        const routeLocations = await RouteLocation.find({ route_id: route._id })
-          .lean();
-        return { ...route, route_locations: routeLocations  };
+      ferryRoutes.map(async (ferryRoute) => {
+        const routeLocations = await RouteLocation.find({ route: ferryRoute._id }).populate('stop_location').sort({ sr_no: 1 }).lean();
+        return { ...ferryRoute, locations: routeLocations  };
       })
     );
     return {

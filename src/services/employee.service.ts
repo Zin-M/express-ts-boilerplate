@@ -7,18 +7,27 @@ const employeeService = new BaseService(Employee);
 
 export const getEmployeeById = async(id:string) => {
 
-    let query = Employee.findById(id).populate("branch").populate("route");
-
-    const item = await query;
-    
-    if (!item) {
+    let employee = await Employee.findById(id).select('name emp_no')
+                        .populate({
+                            path: 'branch',
+                            select: 'name',
+                            populate: {
+                                path: 'company',
+                                select: 'name'
+                            }
+                        }).lean();
+    if (!employee) {
       throw new Error(`${Employee.modelName} not found`);
     }
 
-    const routeLocations = await RouteLocation.find({ route: item.route }).populate("stop_location")
-      .lean();
+    return employee;
 
-    return { status: 200, data: {item, locations: routeLocations} };
+    // let locations = await RouteLocation.find({ route: employee.route }).populate("stop_location").lean();
+
+    // return { 
+    //     status: 200,
+    //     data: {...employee, locations: locations}
+    //  };
 
 }
 
