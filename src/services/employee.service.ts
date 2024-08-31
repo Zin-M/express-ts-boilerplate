@@ -3,6 +3,8 @@ import FerryRoute from "../models/ferryRoute";
 import Location from "../models/location";
 import RouteLocation from "../models/routeLocation";
 import BaseService from "./base.service";
+import bcrypt from 'bcrypt';
+
 
 const employeeService = new BaseService(Employee);
 
@@ -19,7 +21,7 @@ export const getEmployeeById = async(id:string) => {
                         })
                         .populate({
                             path: 'ferry_destination',
-                            select: 'name address'
+                            select: 'name address latitude longitude'
                         })
                         .populate({
                             path: 'route',
@@ -54,6 +56,7 @@ export const getAllEmployee = async () => {
 }
 
 export const createEmployee = async (data: any) => {
+    data.password = await bcrypt.hash('password', 10);
     return await employeeService.create(data);
 }
 
@@ -63,4 +66,8 @@ export const updateEmployeeById = async (id: string, updateData: any) => {
 
 export const deleteEmployeeById = async(id: string) => {
     return await employeeService.deleteById(id);
+}
+
+export const comparePassword = async(plainTextPassword: string, password: string) => {
+    return bcrypt.compare(plainTextPassword, password);
 }

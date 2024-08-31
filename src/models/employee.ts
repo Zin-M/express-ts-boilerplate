@@ -35,6 +35,9 @@ const employeeSchema = new Schema<IEmployee>(
             type: Schema.Types.ObjectId,
             ref: Location
         },
+        password: {
+            type: String
+        },
         status: {
             type: String,
             enum: statusEnum,

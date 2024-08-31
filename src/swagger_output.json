@@ -20,6 +20,66 @@
     }
   ],
   "paths": {
+    "/api/auth/mobile/employee/login": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "emp_no": {
+                    "type": "string",
+                    "example": "ap-009"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "*****"
+                  }
+                },
+                "required": [
+                  "emp_no",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mobile/employee/{employeeId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/company/": {
       "get": {
         "description": "",

@@ -7,6 +7,7 @@ export interface TEmployee extends Document {
     branch: Types.ObjectId;
     route: Types.ObjectId;
     ferry_destination: Types.ObjectId;
+    password: string;
     status: string;
     createdAt: Date;
     updateAt: Date;
