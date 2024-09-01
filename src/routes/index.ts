@@ -9,6 +9,7 @@ import locationRoutes from "./location.routes";
 import carRoutes from "./car.routes";
 import authRoutes from "./auth.routes";
 import mobileRoutes from "./mobile.routes";
+import userRoute from "./user.route";
 
 export default class Routes {
   constructor(app: Application) {
@@ -22,5 +23,7 @@ export default class Routes {
     app.use(`/api/ferry-route`, ferryRouteRoutes);
     app.use(`/api/location`, locationRoutes);
     app.use(`/api/driver`, driverRoutes);
+    app.use(`/api/user`, userRoute);
+
   }
 }
