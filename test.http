@@ -1,0 +1,22 @@
+# POST http://localhost:3000/api/auth/login
+# Content-Type: application/json
+
+# {
+#   "username": "yeemon",
+#   "password": "Yeemon123!@#"
+# }
+
+GET http://localhost:3000/api/brand
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNCwiaWF0IjoxNzMwNzQyODI2LCJleHAiOjE3MzA3NDMxMjZ9.u5S8axqE0wsveXx_shlxKOu6VRRgqWHBY-l5I8gzu0g
+
+# {
+#     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNCwiaWF0IjoxNzI5NDQ3NzgxLCJleHAiOjE3MzIwMzk3ODF9.6gytGjcEkrtafINPgdOEO3ClMiXmHJ2ShRpuDHZoeF0"
+# }
+
+# POST http://localhost:3000/api/auth/refresh
+# Content-Type: application/json
+
+# {
+#     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNCwiaWF0IjoxNzI5NDI5NzY3LCJleHAiOjE3MzIwMjE3Njd9.GPkwG_R1bQ1Rr7AUpOH7wuitJS1yxidiAZ0RQSggf8o"
+# }

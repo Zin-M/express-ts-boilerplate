@@ -1,109 +1,119 @@
-import express, { Express } from "express";
-import cors from "cors";
+import "reflect-metadata";
 import morgan from "morgan";
+import cors from "cors";
+import { InversifyExpressServer } from "inversify-express-utils";
+import {
+  default as express,
+  Application,
+  Request,
+  Response,
+  NextFunction,
+} from "express";
+import container from "./container";
+import { getRouteInfo } from "inversify-express-utils";
+import * as prettyJson from "prettyjson"
+import { ApiError, ValidationError } from "./helpers/error";
+import { Logger } from "./utils";
 import httpStatus from "http-status";
-import ApiError from "./helpers/api-error";
-import ValidationError from "./helpers/validation-error";
-import { configDotenv } from "dotenv";
-import connectDB from "./db/connection";
-import Routes from "./routes";
-import swaggerUi from "swagger-ui-express";
-import swaggerOutput from "./swagger_output.json";
-import { Server as SocketIOServer } from "socket.io";
-import { createServer, Server as HTTPServer } from "http";
-import setupSocketIO from "./socket.io"; // Import the Socket.IO setup function
-
+import path from "path";
+// import paginationMiddleware from "./middlewares/ParsePagination";
+import fileUpload from "express-fileupload";
+import "reflect-metadata";
+import parsePagination from "./middlewares/pagination.middleware";
 
 class App {
-  private app: Express;
-  private server: HTTPServer;
-  private io: SocketIOServer;
+  private app: Application;
 
   constructor() {
-    this.app = express();
-    this.server = createServer(this.app);
-    this.io = setupSocketIO(this.server);
-    this.setup();
-    this.setupRoutes();
-    this.connectDatabase();
+    const server = new InversifyExpressServer(container, null, { rootPath: "/api/v1" });
+
+    this.setConfig(server);
+    this.setErrorConfig(server);
+
+    this.app = server.build();
   }
 
-  private setup() {
-    configDotenv();
-    this.app.use(morgan(":date[clf] :method :url :status :response-time ms"));
-    this.app.use(cors());
-    this.app.use(express.urlencoded({ extended: false }));
-    this.app.use(express.json());
-    this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerOutput));
-    this.setupRoutes();
-    this.app.use((err: any, req: any, res: any, next: any) => {
-      if (err instanceof ValidationError) {
-        const errors = err.details.map((detail: any) => detail.message);
-        const error = new ApiError(
-            errors[0],
-            httpStatus.UNPROCESSABLE_ENTITY,
-            true,
-            { errors }
-        );
-        return next(error);
-      }
-
-      if (!(err instanceof ApiError)) {
-        const apiError = new ApiError(
-            err.message,
-            err.status || httpStatus.INTERNAL_SERVER_ERROR,
-            err.isPublic,
-            {
-              stack: err.stack,
-            }
-        );
-        return next(apiError);
-      }
-
-      return next(err);
-    });
-
-    this.app.use((req: any, res: any, next: any) => {
-      const err = new ApiError("API not found", httpStatus.NOT_FOUND);
-      return next(err);
-    });
-
-    this.app.use((err: ApiError, req: any, res: any, next: any) => {
-      console.error("Error Handler:", err);
-      const errMessage = err.message || "Internal Server Error";
-      res.status(err.status || httpStatus.INTERNAL_SERVER_ERROR).json({
-        status: "error",
-        errorCode: err.errorCode || httpStatus.INTERNAL_SERVER_ERROR,
-        message: errMessage,
-        errors: err.errors || [errMessage],
-      });
-    });
-  }
-
-
-  private setupRoutes() {
-    new Routes(this.app);
-  }
-
-  private connectDatabase() {
-    connectDB().then(() => console.log("DB connection is OK"));
-  }
-
-  public start(port: number) {
-    this.server.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  }
-
-  public getApp(): Express {
+  public getApp(): Application {
     return this.app;
   }
 
-  public close() {
-    if (this.server) {
-      this.io.close();
-      this.server.close();
-    }
+  private setConfig(server: InversifyExpressServer) {
+    server.setConfig(app => {
+      app.use(morgan(`:date[clf] :method :url :status :response-time ms`));
+      app.use(cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        optionsSuccessStatus: 204,
+        maxAge: 600
+      }));
+      app.options("*", (req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.sendStatus(204);
+      });
+      app.use('/public', express.static(path.join(__dirname, '..', 'storage/uploads')));
+      app.use(express.urlencoded({ extended: false }));
+      app.use(express.json());
+      app.use(fileUpload());
+      app.use(parsePagination);
+    })
+  }
+
+  private setErrorConfig(server: InversifyExpressServer) {
+    server.setErrorConfig(app => {
+      /** 404 */
+      app.use((req: Request, res: Response, next: NextFunction) => {
+        next(new ApiError("Route Not Found", 404, true));
+      });
+
+      /** First Error */
+      app.use((err: Error | ApiError, req: Request, res: Response, next: NextFunction) => {
+        if (err instanceof ValidationError) {
+          const errors: any = [];
+
+          for (const params of err.details || []) {
+            errors.push(params.message);
+          }
+
+          const error = new ApiError(
+              errors[0],
+              httpStatus.UNPROCESSABLE_ENTITY,
+              true,
+              { errors }
+          );
+          return next(error);
+        }
+
+        next(err);
+      })
+
+      /** Final error */
+      app.use((err: ApiError, req: Request, res: Response, next: NextFunction) => {
+        const statusCode = err instanceof ApiError ? err.status : 500;
+        const isPublic = err instanceof ApiError && err.isPublic;
+
+        const message = (statusCode == 500 || !isPublic) ? 'Internal server error' : err.message;
+
+        if (statusCode === 500) {
+          Logger.error(err.stack?.toString());
+        }
+
+        res.status(statusCode).json({
+          status: "error",
+          errorCode: err.errorCode || err.status,
+          message: message,
+          errors: err.errors || [message],
+        });
+      })
+    })
+  }
+
+  public printRouteInfo() {
+    const routes = getRouteInfo(container);
+
+    console.log(prettyJson.render({ routes }));
   }
 }
 

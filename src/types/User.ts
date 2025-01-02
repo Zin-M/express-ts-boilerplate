@@ -1,12 +1,3 @@
-import { Document, Types } from "mongoose";
+import {PrismaClient} from "@prisma/client";
 
-export interface TUser extends Document {
-    name: string;
-    email:string;
-    password:string;
-    company: Types.ObjectId;
-    is_super:boolean;
-    status: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
+export  type TUser = PrismaClient['users'];

@@ -1,106 +1,75 @@
-import { Model, Document } from "mongoose";
+import { PrismaClient } from "@prisma/client";
 
-class BaseService<T extends Document> {
-  private model: Model<T>;
+class BaseService<T> {
+  private prisma: PrismaClient;
+  private readonly model: keyof PrismaClient;
 
-  constructor(model: Model<T>) {
+  constructor(prisma: PrismaClient, model: keyof PrismaClient) {
+    this.prisma = prisma;
     this.model = model;
   }
 
-  async getById(id: string, populateFields?: string | string[]) {
-    let query = this.model.findById(id);
-    if (populateFields) {
-      query = query.populate(populateFields);
-    }
-    const item = await query;
+  private getModelDelegate(): any {
+    return this.prisma[this.model] as any;
+  }
+
+  async getById(id: string) {
+    const delegate = this.getModelDelegate();
+    const item = await delegate.findMany({
+      where: { id },
+    });
     if (!item) {
-      throw new Error(`${this.model.modelName} not found`);
+      throw new Error(`${String(this.model)} not found`);
     }
-    return { status: 200, data: item };
+    return item;
   }
 
-  async getAll(
-    limit: number = 10,
-    page: number = 1,
-    populateFields?: string | string[]
-  ) {
-    limit = Math.max(limit, 1);
-    page = Math.max(page, 1);
+  async getAll(limit: number = 10, page: number = 1) {
+    const delegate = this.getModelDelegate();
+    const skip = (page - 1) * limit;
 
-    const offset = (page - 1) * limit;
-    let query = this.model.find().skip(offset).limit(limit);
-    if (populateFields) {
-      query = query.populate(populateFields);
-    }
-    const items = await query;
-    const totalCount = await this.model.countDocuments({ status: "active" });
-
-    return {
-      status: 200,
-      totalResults: items.length,
-      totalCount,
-      page,
-      data:
-        items.length > 0
-          ? items
-          : `No ${this.model.modelName.toLowerCase()}s found`,
-    };
+    return await delegate.findMany({
+      skip,
+      take: limit,
+    });
   }
 
-  async getAllItems(populateFields?: string | string[]) {
-    let query = this.model.find();
-    if (populateFields) {
-      query = query.populate(populateFields);
+  async getAllItems() {
+    const delegate = this.getModelDelegate();
+    const items = await delegate.findMany();
+    if (items.length === 0) {
+      throw new Error(`No ${this.model.toString()}s found`);
     }
-    const items = await query;
-    if (items) {
-      return { status: 200, data: items };
-    }
-    throw new Error(`No ${this.model.modelName.toLowerCase()}s found`);
+    return items;
   }
 
   async create(data: T) {
-    const newItem = new this.model(data);
-    await newItem.save();
-    return { status: 201, message: "Created successfully", data: newItem };
+    const delegate = this.getModelDelegate();
+    return await delegate.create({ data });
   }
 
-  async updateById(
-    id: string,
-    updateData: Partial<T>,
-    populateFields?: string | string[]
-  ) {
-    let query = this.model.findByIdAndUpdate(id, updateData, {
-      new: true,
-      runValidators: true,
+  async updateById(id: string, updateData: Partial<T>) {
+    const delegate = this.getModelDelegate();
+    const updatedItem = await delegate.update({
+      where: { id },
+      data: updateData,
     });
-    if (populateFields) {
-      query = query.populate(populateFields);
-    }
-    const updatedItem = await query;
     if (!updatedItem) {
-      throw new Error(`${this.model.modelName} not found`);
+      throw new Error(`${String(this.model)} not found`);
     }
-    return { status: 200, message: "Updated successfully", data: updatedItem };
+    return updatedItem;
   }
 
   async deleteById(id: string) {
-    const updatedItem = await this.model.findByIdAndUpdate(
-      id,
-      { status: "inactive" },
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-    if (!updatedItem) {
-      throw new Error(`${this.model.modelName} not found`);
+    const delegate = this.getModelDelegate();
+    const deletedItem = await delegate.update({
+      where: { id },
+      data: { status: "inactive" },
+    });
+    if (!deletedItem) {
+      throw new Error(`${String(this.model)} not found`);
     }
-    return {
-      status: 200,
-      message: `${this.model.modelName} successfully deleted`,
-      data: updatedItem,
-    };
+    return deletedItem;
   }
 }
 

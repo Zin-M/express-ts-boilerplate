@@ -1,0 +1,22 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+ model users {
+  user_id       String    @id @default(uuid()) @db.VarChar(255)
+  name          String    @db.VarChar(255)
+  email         String    @db.VarChar(255)
+  phone         String    @db.VarChar(255)
+  address       String    @db.VarChar(255)
+  created_at    DateTime? @default(now())
+  updated_at    DateTime? @updatedAt
+
+  @@index([email])
+  @@index([phone])
+}

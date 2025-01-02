@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "EXPRESS-TS",
+      "script": "./dist/index.js",
+      "watch": true,
+      "ignore_watch": ["./storage", "./node_modules", "./src", "./sql"],
+      "log_date_format": "YYYY-MM-DD HH:mm:ss"
+    }
+  ]
+}
