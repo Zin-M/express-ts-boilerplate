@@ -29,6 +29,8 @@ import * as console from "node:console";
 @controller("/users")
 export class UserController extends BaseController  {
 
+
+
     @httpPost("/",validate(validator.createOne))
     private async createOne(@request() req: express.Request, @response() res: express.Response) {
         try {
@@ -36,9 +38,10 @@ export class UserController extends BaseController  {
             const response = await createUser(data);
             return  this.respondCreated(response,'successfully created')
         } catch (err: any) {
-            return  this.responseError(err)
+            return  this.responseError(err,err.message)
         }
     }
+
 
     @httpGet("/:userId",validate(validator.findOne))
     private async findById(@requestParam("userId") userId: string, @response() res: express.Response) {
@@ -46,7 +49,7 @@ export class UserController extends BaseController  {
             const user = await getUserById(userId);
             return this.respondSuccess(user,'get one')
         } catch (err: any) {
-            return  this.responseError(err)
+            return  this.responseError(err,err.message)
         }
     }
 
@@ -60,19 +63,10 @@ export class UserController extends BaseController  {
             const users = await getUsers(limit, page);
             return this.respondOkWithPagination(users,'get users');
         } catch (err: any) {
-            return  this.responseError(err)
+            return  this.responseError(err,err.message)
         }
     }
 
-    @httpGet("/all")
-    private async getAll(@response() res: express.Response) {
-        try {
-            const users = await getAllUser();
-            return this.respondSuccess(users,'get all')
-        } catch (err: any) {
-            return  this.responseError(err)
-        }
-    }
 
     @httpPut("/:userId",validate(validator.updateOne))
     private async updateOne(
@@ -85,7 +79,7 @@ export class UserController extends BaseController  {
             const userData = await updateUserById(userId, updateData);
             return this.respondSuccess(userData,'successfully updated')
         } catch (err: any) {
-            return  this.responseError(err)
+            return  this.responseError(err,err.message)
         }
     }
 
@@ -95,7 +89,9 @@ export class UserController extends BaseController  {
             const deleteUser = await deleteUserById(userId);
             return this.respondSuccess(deleteUser,'successfully deleted')
         } catch (err: any) {
-            return  this.responseError(err)
+            return  this.responseError(err,err.message)
         }
     }
+
+
 }

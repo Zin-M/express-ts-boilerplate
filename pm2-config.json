@@ -4,7 +4,7 @@
       "name": "EXPRESS-TS",
       "script": "./dist/index.js",
       "watch": true,
-      "ignore_watch": ["./storage", "./node_modules", "./src", "./sql"],
+      "ignore_watch": ["./storage", "./node_modules", "./prisma"],
       "log_date_format": "YYYY-MM-DD HH:mm:ss"
     }
   ]

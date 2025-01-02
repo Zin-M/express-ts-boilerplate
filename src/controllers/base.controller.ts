@@ -2,7 +2,6 @@ import { BaseHttpController } from "inversify-express-utils";
 import { Paginator } from "../types/general";
 import httpStatus from "http-status";
 import { buildPaginator } from "../helpers/pagination";
-import { number } from "joi";
 
 class BaseController extends BaseHttpController {
     respondSuccessWithPaginator(
